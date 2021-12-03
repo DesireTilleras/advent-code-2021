@@ -1,4 +1,4 @@
-function getResult() {
+const getResult = async() => {
   return new Promise((resolve, reject) => {
     var fs = require("fs");
     fs.readFile("./Server/newList.txt", function (err, data) {
@@ -21,4 +21,4 @@ function getResult() {
     });
   });
 }
-module.exports.day1P1 = getResult();
+module.exports.day1P1 = getResult;

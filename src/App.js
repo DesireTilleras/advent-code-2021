@@ -4,6 +4,8 @@ import Navbar from './Navbar';
 import {BrowserRouter as Router,Routes, Route} from 'react-router-dom'
 import DayOne from './DayOne';
 import Home from './Home';
+import DayTwo from './DayTwo';
+import DayThree from './DayThree';
 
 function App() {
   return (
@@ -16,6 +18,12 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/dayOne" element={<DayOne />} />
+          </Routes>
+          <Routes>
+            <Route path="/dayTwo" element={<DayTwo />} />
+          </Routes>
+          <Routes>
+            <Route path="/dayThree" element={<DayThree />} />
           </Routes>
         </div>
       </div>

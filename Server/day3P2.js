@@ -1,30 +1,32 @@
-let gammaArray = [];
-let epsilonArray = [];
+const getResult = async () => {
+  return new Promise((resolve, reject) => {
+    var fs = require("fs");
+    fs.readFile("./Server/day3P1.txt", function (err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        var array = data.toString().split("\n");
 
-var fs = require("fs");
-fs.readFile("./day3P1.txt", function (err, data) {
-  if (err) throw err;
-  var array = data.toString().split("\n");
+        let oxygenGenerator = returnMostCommon(0, array);
+        let scrubber = returnLeastCommon(0, array);
 
-let oxygenGenerator = returnMostCommon(0, array);
-let scrubber = returnLeastCommon(0, array);
+        console.log(oxygenGenerator);
+        console.log(scrubber);
 
-console.log(oxygenGenerator);
-console.log(scrubber);
+        const oxygenGeneratorDecimal = parseInt(oxygenGenerator, 2);
+        const scrubberDecimal = parseInt(scrubber, 2);
 
-
-  const oxygenGeneratorDecimal = parseInt(oxygenGenerator, 2);
-  const scrubberDecimal = parseInt(scrubber, 2);
-
-  const answer = oxygenGeneratorDecimal * scrubberDecimal;
-
-  console.log(answer);
-});
+        const answer = oxygenGeneratorDecimal * scrubberDecimal;
+        resolve(answer)
+      }
+    });
+  });
+};
 
 function returnMostCommon(index, array) {
-
-    if(array.length === 1)
-    {return array[0]}
+  if (array.length === 1) {
+    return array[0];
+  }
   let count0 = 0;
   let count1 = 0;
 
@@ -46,17 +48,14 @@ function returnMostCommon(index, array) {
 
   let newArray = [];
 
-  for(y = 0; y < array.length; y++) {
+  for (y = 0; y < array.length; y++) {
     if (array[y].charAt(index) == mostCommonNumber) {
-        newArray.push(array[y]);
+      newArray.push(array[y]);
     }
   }
 
   return returnMostCommon(index + 1, newArray);
-  
 }
-
-
 
 function returnLeastCommon(index, array) {
   if (array.length === 1) {
@@ -77,7 +76,7 @@ function returnLeastCommon(index, array) {
 
   if (count1 < count0) {
     leastCommonNumber = 1;
-  } else if(count1 >= count0) {
+  } else if (count1 >= count0) {
     leastCommonNumber = 0;
   }
 
@@ -91,3 +90,5 @@ function returnLeastCommon(index, array) {
 
   return returnLeastCommon(index + 1, newArray);
 }
+
+module.exports.day3P2 = getResult;
